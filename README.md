@@ -9,7 +9,7 @@
 - SBCFormer achieves the highest trade-off between accuracy and speed on a Raspberry Pi 4 Model B with an ARM-Cortex A72 CPU.
 
 <p align="center">
-  <img src="data/acc_latency_cpus.png" width=80%> <br>
+  <img src="data/acc_latency_cpus.png" width=90%> <br>
   Models are trained on ImageNet-1K and measured the latency performance on ARM and Intel CPUs.
 </p>
 
