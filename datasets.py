@@ -63,7 +63,6 @@ class INatDataset(ImageFolder):
 
     # __getitem__ and __len__ inherited from ImageFolder
 
-
 def build_dataset(is_train, args):
     
     if args.data_set == 'CIFAR10':
@@ -153,10 +152,10 @@ def build_transform(is_train, args):
         t.append(transforms.CenterCrop(args.input_size))
 
     t.append(transforms.ToTensor())
-    # if args.data_set == 'CIFAR10':
-    #     t.append(transforms.Normalize(CIFAR10_DEFAULT_MEAN, CIFAR10_DEFAULT_STD))
-    # elif args.data_set == 'CIFAR100':
-    #     t.append(transforms.Normalize(CIFAR100_DEFAULT_MEAN, CIFAR100_DEFAULT_STD))
+    if args.data_set == 'CIFAR10':
+        t.append(transforms.Normalize(CIFAR10_DEFAULT_MEAN, CIFAR10_DEFAULT_STD))
+    elif args.data_set == 'CIFAR100':
+        t.append(transforms.Normalize(CIFAR100_DEFAULT_MEAN, CIFAR100_DEFAULT_STD))
     if args.data_set == 'IMNET': 
         t.append(transforms.Normalize(IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD))
     return transforms.Compose(t)
