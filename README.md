@@ -37,9 +37,20 @@ Training the SBCFormer_B on ImageNet with an 4-gpu server for 300 epochs:
 OMP_NUM_THREADS=1 torchrun --nnodes 1 --nproc_per_node=4 --master_port 29502 main.py --lr 2.5e-4 --model "SBCFormer_B"  --resume "" --data-set "IMNET" --data-path "/path/to/imagenet" --input-size 224 --batch-size 1024  --epochs 300
 ```
 
+## Evaluation
+
 
 # Acknowledgement
 This repository is built using the [timm](https://github.com/huggingface/pytorch-image-models) library and the [DeiT](https://github.com/facebookresearch/deit) repository.
 
 # Citation
 If our code or models help your work, please cite SBCFormer (WACV2024):
+
+```BibTeX
+@article{lu2024sbcformer,
+  title={SBCFormer: Lightweight Network Capable of Full-size ImageNet Classification at 1 FPS on Single Board Computers},
+  author={Xiangyong Lu, Masanori Suganuma, Takayuki Okatani},
+  booktitle={Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},
+  year={2024}
+}
+```
