@@ -22,6 +22,7 @@ from engine import train_one_epoch, evaluate
 from losses import DistillationLoss
 from samplers import RASampler
 import utils
+from models import *
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print("running on {} device.".format(device))
@@ -37,7 +38,7 @@ def get_args_parser():
     parser.add_argument('--epochs', default=300, type=int)
     parser.add_argument('--input-size', default=224, type=int, help='images input size')
     parser.add_argument('--in-chans', type=int,      default=3, help='the channel of inputs ')
-    parser.add_argument('--batch-size', default=300, type=int)
+    parser.add_argument('--batch-size', default=30, type=int)
 
     parser.add_argument('--drop', type=float, default=0., metavar='PCT', help='Dropout rate (default: 0.)')
     parser.add_argument('--drop-path', type=float, default=0.1, metavar='PCT', help='Drop path rate (default: 0.1)')
@@ -105,19 +106,19 @@ def get_args_parser():
                         help='How to apply mixup/cutmix params. Per "batch", "pair", or "elem"')
 
     # Distillation parameters  distilled
-    # parser.add_argument('--distilled', action='store_true', default=False, help='Perform distilled ')
-    # parser.add_argument('--teacher-model', default='regnety_200mf', type=str, metavar='MODEL',
-    #                     help='Name of teacher model to train (default: "regnety_160"')
-    # parser.add_argument('--teacher-path', type=str, default='./output/RegNetY_200MF_CIFAR10_checkpoint_best_init_lre-2.pth')
-    # parser.add_argument('--distillation-type', default='none', choices=['none', 'soft', 'hard'], type=str, help="")
-    # parser.add_argument('--distillation-alpha', default=0.5, type=float, help="")
-    # parser.add_argument('--distillation-tau', default=1.0, type=float, help="")
+    parser.add_argument('--distilled', action='store_true', default=False, help='Perform distilled ')
+    parser.add_argument('--teacher-model', default='regnety_200mf', type=str, metavar='MODEL',
+                        help='Name of teacher model to train (default: "regnety_160"')
+    parser.add_argument('--teacher-path', type=str, default='')
+    parser.add_argument('--distillation-type', default='none', choices=['none', 'soft', 'hard'], type=str, help="")
+    parser.add_argument('--distillation-alpha', default=0.5, type=float, help="")
+    parser.add_argument('--distillation-tau', default=1.0, type=float, help="")
 
     # Finetuning params
     parser.add_argument('--finetune', default='', help='finetune from checkpoint')
 
     # Dataset parameters
-    parser.add_argument('--data-path', default=  './data', type=str,
+    parser.add_argument('--data-path', default=  '../../PythonWork_E/Data/ImageNet_2012',#'./data', type=str,
                         help='dataset path')
     parser.add_argument('--data-set', default='IMNET', choices=['CIFAR10', 'CIFAR100' , 'IMNET'],
                         type=str, help='Image Net dataset path')
