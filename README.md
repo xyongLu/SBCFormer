@@ -31,10 +31,10 @@ Download and extract ImageNet train and val images from http://image-net.org/. T
       img4.jpeg
 ```
 ## Training
-Training the SBCFormer_B on ImageNet with an 8-gpu server for 300 epochs:
+Training the SBCFormer_B on ImageNet with an 4-gpu server for 300 epochs:
 
 ```
-OMP_NUM_THREADS=1 torchrun --nnodes 1 --nproc_per_node=8 --master_port 29502 main.py --lr 2.5e-4 --model "SBCFormer_B"  --resume "" --data-set "IMNET" --data-path "/path/to/imagenet" --input-size 224 --batch-size 256  --epochs 300
+OMP_NUM_THREADS=1 torchrun --nnodes 1 --nproc_per_node=4 --master_port 29502 main.py --lr 2.5e-4 --model "SBCFormer_B"  --resume "" --data-set "IMNET" --data-path "/path/to/imagenet" --input-size 224 --batch-size 1024  --epochs 300
 ```
 
 
