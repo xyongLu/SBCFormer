@@ -45,6 +45,7 @@ python main.py --model "SBCFormer_B"  --eval --resume "/path/to/checkpoint" --da
 ```
 The trained SBCFormer_B model can be downloaded from [\[SBCFormer_B, 80.0%\]](https://drive.google.com/file/d/1MrWPZOvRcWNoB1e0hiy9M9bQ5Y6UOs7p/view?usp=sharing)
 
+
 # Acknowledgement
 This repository is built using the [timm](https://github.com/huggingface/pytorch-image-models) library and the [DeiT](https://github.com/facebookresearch/deit) repository.
 
