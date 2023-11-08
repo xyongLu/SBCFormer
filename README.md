@@ -1,5 +1,5 @@
 # SBCFormer
-[SBCFormer: Lightweight Network Capable of Full-size ImageNet Classification at 1 FPS on Single Board Computers]()
+[SBCFormer: Lightweight Network Capable of Full-size ImageNet Classification at 1 FPS on Single Board Computers](https://arxiv.org/abs/2311.03747)
 
 # Introduction
 

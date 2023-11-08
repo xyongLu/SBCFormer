@@ -187,17 +187,12 @@ class MetricLogger(object):
             i += 1
             end = time.time()
             
-            # if i == 10:
+            # if i <= 20:
+            #     continue
+            # if i == 320:
             #     avg_time = iter_time.global_avg
-            #     start_time = time.time()
-            # if i == 30:
-                # total_time_20 = time.time() - start_time
-                # avg_time_20 = total_time_20 / 20
-
-            if i == 300:
-                avg_time = iter_time.global_avg
-                print("Average time:{:.4f}s/interation. (total {} iterations)".format(avg_time, i))
-                return
+            #     print("Average time:{:.4f}s/interation. (total {} iterations)".format(avg_time, i))
+            #     return
 
         total_time = time.time() - start_time
         minutes =  total_time / 60 #str(datetime.timedelta(seconds=int(total_time)))
