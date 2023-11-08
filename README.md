@@ -41,7 +41,7 @@ OMP_NUM_THREADS=1 torchrun --nnodes 1 --nproc_per_node=4 --master_port 29502 mai
 
 Evaluating the trained SBCFormer_B on ImageNet is available:
 ```
-OMP_NUM_THREADS=1 torchrun --nnodes 1 --nproc_per_node=4 main.py --model "SBCFormer_B"  --eval --resume "/path/to/checkpoint" --data-set "IMNET" --data-path "/path/to/imagenet" --input-size 224 --batch-size 1024
+python main.py --model "SBCFormer_B"  --eval --resume "/path/to/checkpoint" --data-set "IMNET" --data-path "/path/to/imagenet" --input-size 224 --batch-size 1024 --epochs 300 
 ```
 The trained SBCFormer_B model can be download from [\[SBCFormer_B, 80.0%\]](https://drive.google.com/file/d/1MrWPZOvRcWNoB1e0hiy9M9bQ5Y6UOs7p/view?usp=sharing)
 
