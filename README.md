@@ -37,15 +37,13 @@ Training the SBCFormer_B on ImageNet with an 4-gpu server for 300 epochs:
 OMP_NUM_THREADS=1 torchrun --nnodes 1 --nproc_per_node=4 --master_port 29502 main.py --lr 2.5e-4 --model "SBCFormer_B"  --resume "" --data-set "IMNET" --data-path "/path/to/imagenet" --input-size 224 --batch-size 1024  --epochs 300
 ```
 
-## Evaluating
+## Evaluation
 
 Evaluating the trained SBCFormer_B on ImageNet is available:
 ```
 python main.py --model "SBCFormer_B"  --eval --resume "/path/to/checkpoint" --data-set "IMNET" --data-path "/path/to/imagenet" --input-size 224 --batch-size 1024 --epochs 300 
 ```
 The trained SBCFormer_B model can be downloaded from [\[SBCFormer_B, 80.0%\]](https://drive.google.com/file/d/1MrWPZOvRcWNoB1e0hiy9M9bQ5Y6UOs7p/view?usp=sharing)
-
-
 
 # Acknowledgement
 This repository is built using the [timm](https://github.com/huggingface/pytorch-image-models) library and the [DeiT](https://github.com/facebookresearch/deit) repository.
