@@ -248,6 +248,15 @@ def main(args):
             drop_path_rate=args.drop_path,
             drop_block_rate=None,)
 
+    model_ema = None
+    if args.model_ema:
+        # Important to create EMA model after cuda(), DP wrapper, and AMP but before SyncBN and DDP wrapper
+        model_ema = ModelEma(
+            model,
+            decay=args.model_ema_decay,
+            device='cpu' if args.model_ema_force_cpu else '',
+            resume='')
+    
     if args.finetune:
         if args.finetune.startswith('https'):
             checkpoint = torch.hub.load_state_dict_from_url(
@@ -295,22 +304,14 @@ def main(args):
             if args.model_ema:
                 utils._load_checkpoint_for_ema(model_ema, checkpoint['model_ema'])
     model.to(device)
-    # flops, params = get_model_complexity_info(model, (3,args.input_size, args.input_size),as_strings=True,print_per_layer_stat=False)
-    # print("flops: %s |params: %s" % (flops,params))
-
-    model_ema = None
-    if args.model_ema:
-        # Important to create EMA model after cuda(), DP wrapper, and AMP but before SyncBN and DDP wrapper
-        model_ema = ModelEma(
-            model,
-            decay=args.model_ema_decay,
-            device='cpu' if args.model_ema_force_cpu else '',
-            resume='')
 
     model_without_ddp = model
     if args.distributed:
         model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[args.gpu], find_unused_parameters=True)
         model_without_ddp = model.module
+    
+    # flops, params = get_model_complexity_info(model, (3,args.input_size, args.input_size),as_strings=True,print_per_layer_stat=False)
+    # print("flops: %s |params: %s" % (flops,params))
     n_parameters = sum(p.numel() for p in model.parameters() if p.requires_grad)
     print('number of params:', n_parameters)
 
