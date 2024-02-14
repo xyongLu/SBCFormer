@@ -53,10 +53,11 @@ This repository is built using the [timm](https://github.com/huggingface/pytorch
 If our code or models help your work, please cite SBCFormer (WACV2024):
 
 ```BibTeX
-@article{lu2024sbcformer,
+@inproceedings{lu2024sbcformer,
   title={SBCFormer: Lightweight Network Capable of Full-size ImageNet Classification at 1 FPS on Single Board Computers},
-  author={Xiangyong Lu, Masanori Suganuma, Takayuki Okatani},
-  booktitle={Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},
+  author={Lu, Xiangyong and Suganuma, Masanori and Okatani, Takayuki},
+  booktitle={Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision},
+  pages={1123--1133},
   year={2024}
 }
 ```
