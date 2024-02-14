@@ -247,6 +247,7 @@ def main(args):
             drop_rate=args.drop,
             drop_path_rate=args.drop_path,
             drop_block_rate=None,)
+    model.to(device)
 
     model_ema = None
     if args.model_ema:
@@ -256,6 +257,11 @@ def main(args):
             decay=args.model_ema_decay,
             device='cpu' if args.model_ema_force_cpu else '',
             resume='')
+    
+    model_without_ddp = model
+    if args.distributed:
+        model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[args.gpu], find_unused_parameters=True)
+        model_without_ddp = model.module
     
     if args.finetune:
         if args.finetune.startswith('https'):
@@ -269,7 +275,7 @@ def main(args):
         else:
             checkpoint_model = checkpoint
         
-        state_dict = model.state_dict()
+        state_dict = model_without_ddp.state_dict()
         for k in ['head.weight', 'head.bias', 'head_dist.weight', 'head_dist.bias']:
             if k in checkpoint_model and checkpoint_model[k].shape != state_dict[k].shape:
                 print("Removing key {} from pretrained checkpoint".format(k))
@@ -295,7 +301,7 @@ def main(args):
         new_pos_embed = torch.cat((extra_tokens, pos_tokens), dim=1)
         checkpoint_model['pos_embed'] = new_pos_embed
 
-        model.load_state_dict(checkpoint_model, strict=False)
+        model_without_ddp.load_state_dict(checkpoint_model, strict=False)
 
         if not args.eval and 'optimizer' in checkpoint and 'lr_scheduler' in checkpoint and 'epoch' in checkpoint:
             optimizer.load_state_dict(checkpoint['optimizer'])
@@ -303,12 +309,7 @@ def main(args):
             args.start_epoch = checkpoint['epoch'] + 1
             if args.model_ema:
                 utils._load_checkpoint_for_ema(model_ema, checkpoint['model_ema'])
-    model.to(device)
-
-    model_without_ddp = model
-    if args.distributed:
-        model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[args.gpu], find_unused_parameters=True)
-        model_without_ddp = model.module
+    
     
     # flops, params = get_model_complexity_info(model, (3,args.input_size, args.input_size),as_strings=True,print_per_layer_stat=False)
     # print("flops: %s |params: %s" % (flops,params))
