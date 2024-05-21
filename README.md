@@ -11,7 +11,6 @@
 ## Architecture
 <p align="center">
   <img src="data/sbcformer.png" width=90%> <br>
-  Models are trained on ImageNet-1K and measured the latency performance on ARM and Intel CPUs.
 </p>
 
 
