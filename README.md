@@ -8,12 +8,15 @@
 - SBCFormer uses the proposed hourglass attention computation to aggregate global information from the entire image while minimizing computational costs.
 - SBCFormer achieves the highest trade-off between accuracy and speed on a Raspberry Pi 4 Model B with an ARM-Cortex A72 CPU.
 
+## Architecture
 <p align="center">
-  <img src="data/acc_latency_cpus.png" width=90%> <br>
+  <img src="data/sbcformer.png" width=90%> <br>
   Models are trained on ImageNet-1K and measured the latency performance on ARM and Intel CPUs.
 </p>
 
+
 # Classification on ImageNet-1K
+
 ## Data Preparation
 Download and extract ImageNet train and val images from http://image-net.org/. The training and validation data are expected to be in the `train` folder and `val` folder respectively:
 
@@ -30,6 +33,12 @@ Download and extract ImageNet train and val images from http://image-net.org/. T
     class/2
       img4.jpeg
 ```
+## Performance 
+<p align="center">
+  <img src="data/acc_latency_cpus.png" width=90%> <br>
+  Models are trained on ImageNet-1K and measured the latency performance on ARM and Intel CPUs.
+</p>
+
 ## Training
 Training the SBCFormer_B on ImageNet with an 4-gpu server for 300 epochs:
 
