@@ -3,11 +3,11 @@
 
 # Introduction
 
-- This paper introduces a CNN-ViT hybrid network called SBCFormer, which achieves high accuracy and fast computation on such low-end CPUs.
+- This paper introduces a **CNN-ViT hybrid** network called SBCFormer, which achieves high accuracy and fast computation on such low-end CPUs.
 - We compare our SBCFormers against a wide range of relevant and up-todate alternatives.
-- SBCFormer uses the proposed hourglass attention computation to aggregate global information from the entire image while minimizing computational costs.
-- SBCFormer achieves the highest trade-off between accuracy and speed on a Raspberry Pi 4 Model B with an ARM-Cortex A72 CPU.
-- SBCFormer as a backbone is available for various tasks: ImageNet-1K Classification, object detection, and monocular depth estimation.[Successful Implementation].
+- SBCFormer uses **the proposed hourglass attention computation** to aggregate global information from the entire image while minimizing computational costs.
+- SBCFormer achieves **the highest trade-off between accuracy and speed** on a Raspberry Pi 4 Model B with an ARM-Cortex A72 CPU.
+- SBCFormer as **a backbone** is available for various tasks: ImageNet-1K Classification, object detection, and monocular depth estimation.[Successful Implementation].
 
 ## Architecture
 <p align="center">
