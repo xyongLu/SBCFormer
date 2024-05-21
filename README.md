@@ -16,6 +16,13 @@
 
 # Classification on ImageNet-1K
 
+## Performance 
+<p align="center">
+  <img src="data/acc_latency_cpus.png" width=90%> <br>
+  Models are trained on ImageNet-1K and measured the latency performance on ARM and Intel CPUs.
+</p>
+
+
 ## Data Preparation
 Download and extract ImageNet train and val images from http://image-net.org/. The training and validation data are expected to be in the `train` folder and `val` folder respectively:
 
@@ -32,11 +39,6 @@ Download and extract ImageNet train and val images from http://image-net.org/. T
     class/2
       img4.jpeg
 ```
-## Performance 
-<p align="center">
-  <img src="data/acc_latency_cpus.png" width=90%> <br>
-  Models are trained on ImageNet-1K and measured the latency performance on ARM and Intel CPUs.
-</p>
 
 ## Training
 Training the SBCFormer_B on ImageNet with an 4-gpu server for 300 epochs:
